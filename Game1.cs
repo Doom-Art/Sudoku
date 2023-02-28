@@ -346,12 +346,24 @@ namespace Sudoku
         {
             GraphicsDevice.Clear(Color.Black);
             _spriteBatch.Begin();
-            for (int i = 0; i < 3; i++)
-                for (int j = 0; j < 3; j++)
+            int tempI; int tempJ;
+            for (int i = 0; i < 9; i++)
+                for (int j = 0; j < 9; j++)
                 {
-                    _spriteBatch.Draw(rectTex, new Rectangle(i * 70, j * 70, 69, 69), Color.White);
+                    tempI = i;
+                    tempJ = j;
+                    if (i > 5)
+                        tempI += 2;
+                    else if (i > 2)
+                        tempI++;
+                    if (j > 5)
+                        tempJ += 2;
+                    else if (j > 2)
+                        tempJ++;
+                    _spriteBatch.Draw(rectTex, new Rectangle((tempI * 70), tempJ * 70, 69, 69), Color.White);
+                    _spriteBatch.DrawString(numFont, Convert.ToString(board[i, j]), new Vector2((70 * tempI), (70 * tempJ)), Color.Black);
                 }
-            
+
             _spriteBatch.End();
             // TODO: Add your drawing code here
 
