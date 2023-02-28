@@ -27,8 +27,8 @@ namespace Sudoku
         protected override void Initialize()
         {
             // TODO: Add your initialization logic here
-            _graphics.PreferredBackBufferWidth = 800;
-            _graphics.PreferredBackBufferHeight = 700;
+            _graphics.PreferredBackBufferWidth = 633;
+            _graphics.PreferredBackBufferHeight = 633;
             _graphics.ApplyChanges();
             rand = new Random();
             board = new int[9, 9];
@@ -344,7 +344,7 @@ namespace Sudoku
 
         protected override void Draw(GameTime gameTime)
         {
-            GraphicsDevice.Clear(Color.White);
+            GraphicsDevice.Clear(Color.Black);
             _spriteBatch.Begin();
             int tempI; int tempJ;
             for(int i = 0; i < 9; i++)
@@ -360,7 +360,8 @@ namespace Sudoku
                         tempJ+=2;
                     else if (j > 2)
                         tempJ++;
-                    _spriteBatch.DrawString(numFont, Convert.ToString(board[i, j]), new Vector2((20*tempI)+20,(20*tempJ)+20), Color.Black);
+                    _spriteBatch.Draw(rectTex, new Rectangle((tempI * 70), tempJ * 70, 69, 69), Color.White);
+                    _spriteBatch.DrawString(numFont, Convert.ToString(board[i, j]), new Vector2((70*tempI)+20,(70*tempJ)+20), Color.Black);
                 }
             _spriteBatch.End();
             // TODO: Add your drawing code here
