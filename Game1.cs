@@ -229,13 +229,11 @@ namespace Sudoku
                                 else tempInt = rand.Next(10);
                             }
                     }
-                    else if (j == 6)
-                    {
+                    else if (j == 6){
                         if (i <= 2)
                             while (!findNum)
                             {
-                                if (row7.Contains(tempInt) && group7.Contains(tempInt))
-                                {
+                                if (row7.Contains(tempInt) && group7.Contains(tempInt)){
                                     row7.Remove(tempInt); group7.Remove(tempInt); findNum = true;
                                 }
                                 else tempInt = rand.Next(10);
@@ -259,8 +257,7 @@ namespace Sudoku
                                 else tempInt = rand.Next(10);
                             }
                     }
-                    else if (j == 7)
-                    {
+                    else if (j == 7){
                         if (i <= 2)
                             while (!findNum)
                             {
@@ -350,18 +347,18 @@ namespace Sudoku
             for (int i = 0; i < 9; i++)
                 for (int j = 0; j < 9; j++)
                 {
-                    tempI = i;
-                    tempJ = j;
+                    tempI = 0;
+                    tempJ = 0;
                     if (i > 5)
-                        tempI += 2;
+                        tempI = 2;
                     else if (i > 2)
-                        tempI++;
+                        tempI =1;
                     if (j > 5)
-                        tempJ += 2;
+                        tempJ = 2;
                     else if (j > 2)
-                        tempJ++;
-                    _spriteBatch.Draw(rectTex, new Rectangle((tempI * 70), tempJ * 70, 69, 69), Color.White);
-                    _spriteBatch.DrawString(numFont, Convert.ToString(board[i, j]), new Vector2((70 * tempI), (70 * tempJ)), Color.Black);
+                        tempJ= 1;
+                    _spriteBatch.Draw(rectTex, new Rectangle((i * 70)+tempI, (j * 70)+tempJ, 69, 69), Color.White);
+                    _spriteBatch.DrawString(numFont, Convert.ToString(board[i, j]), new Vector2((70 * i)+tempI, (70 * j)+tempJ), Color.Black);
                 }
 
             _spriteBatch.End();
