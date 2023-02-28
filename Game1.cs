@@ -3,7 +3,10 @@ using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
+using System.Linq;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Security.Cryptography.X509Certificates;
 
 namespace Sudoku
@@ -32,301 +35,42 @@ namespace Sudoku
             _graphics.ApplyChanges();
             rand = new Random();
             board = new int[9, 9];
-            List<int> row1 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            List<int> row2 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            List<int> row3 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            List<int> row4 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            List<int> row5 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            List<int> row6 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            List<int> row7 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            List<int> row8 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            List<int> row9 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            List<int> collumn1 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            List<int> collumn2 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            List<int> collumn3 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            List<int> collumn4 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            List<int> collumn5 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            List<int> collumn6 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            List<int> collumn7 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            List<int> collumn8 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            List<int> collumn9 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            List<int> group1 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            List<int> group2 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            List<int> group3 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            List<int> group4 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            List<int> group5 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            List<int> group6 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            List<int> group7 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            List<int> group8 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            List<int> group9 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
-            int tempInt;
-            bool findNum;
+            List<List<int>> rows = new List<List<int>>();
             for (int i = 0; i < 9; i++)
-                for (int j = 0; j < 9; j++)
+            {
+                rows.Add(new List<int>{ 1, 2, 3, 4, 5, 6, 7, 8, 9 });
+            }
+            List<List<int>> groups = new List<List<int>>();
+            for (int i = 0; i < 9; i++)
+            {
+                groups.Add(new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 });
+            }
+            List<List<int>> collumns = new List<List<int>>();
+            for (int i = 0; i < 9; i++)
+            {
+                collumns.Add(new List<int> { 1,2,3,4,5,6,7,8,9});
+            }
+            int tempInt; bool numSet; int tempGroup;
+            for (int i = 0; i<9; i++)
+                for (int j =0; j < 9; j++)
                 {
-                    findNum = false;
-                    tempInt = rand.Next(10);
-                    if (j == 0){
-                        if (i <= 2)
-                            while (!findNum)
-                            {
-                                if (row1.Contains(tempInt) && group1.Contains(tempInt)){
-                                    row1.Remove(tempInt); group1.Remove(tempInt); findNum = true;
-                                }
-                                else tempInt = rand.Next(10);
-                            }
-                        else if(i<6)
-                            while (!findNum)
-                            {
-                                if (row1.Contains(tempInt) && group2.Contains(tempInt)){
-                                    row1.Remove(tempInt); group1.Remove(tempInt); findNum = true;
-                                }
-                                else tempInt = rand.Next(10);
-                            }
-                        else
-                            while (!findNum)
-                            {
-                                if (row1.Contains(tempInt) && group3.Contains(tempInt)){
-                                    row1.Remove(tempInt); group1.Remove(tempInt); findNum = true;
-                                }
-                                else tempInt = rand.Next(10);
-                            }
-                    }
-                    else if (j == 1){
-                        if (i <= 2)
-                            while (!findNum)
-                            {
-                                if (row2.Contains(tempInt) && group1.Contains(tempInt)){
-                                    row2.Remove(tempInt); group1.Remove(tempInt); findNum = true;
-                                }
-                                else tempInt = rand.Next(10);
-                            }
-                        else if (i < 6)
-                            while (!findNum)
-                            {
-                                if (row2.Contains(tempInt) && group2.Contains(tempInt)){
-                                    row2.Remove(tempInt); group1.Remove(tempInt); findNum = true;
-                                }
-                                else tempInt = rand.Next(10);
-                            }
-                        else
-                            while (!findNum)
-                            {
-                                if (row2.Contains(tempInt) && group3.Contains(tempInt)){
-                                    row2.Remove(tempInt); group1.Remove(tempInt); findNum = true;
-                                }
-                                else tempInt = rand.Next(10);
-                            }
-                    }
-                    else if (j == 2)
+                    numSet = false;
+                    tempInt = rand.Next(1, 10);
+                    tempGroup = 0 + (i/3)+((j/3)*3);
+                    while (!numSet)
                     {
-                        if (i <= 2)
-                            while (!findNum)
-                            {
-                                if (row3.Contains(tempInt) && group1.Contains(tempInt))
-                                {
-                                    row3.Remove(tempInt); group1.Remove(tempInt); findNum = true;
-                                }
-                                else tempInt = rand.Next(10);
-                            }
-                        else if (i < 6)
-                            while (!findNum)
-                            {
-                                if (row3.Contains(tempInt) && group2.Contains(tempInt))
-                                {
-                                    row3.Remove(tempInt); group1.Remove(tempInt); findNum = true;
-                                }
-                                else tempInt = rand.Next(10);
-                            }
+                        if (rows[j].Contains(tempInt) && collumns[i].Contains(tempInt) && groups[tempGroup].Contains(tempInt))
+                        {
+                            rows[j].Remove(tempInt); collumns[i].Remove(tempInt); groups[tempGroup].Remove(tempInt); numSet = true; board[i, j] = tempInt;
+                        }
                         else
-                            while (!findNum)
-                            {
-                                if (row3.Contains(tempInt) && group3.Contains(tempInt))
-                                {
-                                    row3.Remove(tempInt); group1.Remove(tempInt); findNum = true;
-                                }
-                                else tempInt = rand.Next(10);
-                            }
+                        {
+                            tempInt = rand.Next(1, 10);
+                        }
                     }
-                    else if (j == 3)
-                    {
-                        if (i <= 2)
-                            while (!findNum)
-                            {
-                                if (row4.Contains(tempInt) && group4.Contains(tempInt))
-                                {
-                                    row4.Remove(tempInt); group4.Remove(tempInt); findNum = true;
-                                }
-                                else tempInt = rand.Next(10);
-                            }
-                        else if (i < 6)
-                            while (!findNum)
-                            {
-                                if (row4.Contains(tempInt) && group5.Contains(tempInt))
-                                {
-                                    row4.Remove(tempInt); group5.Remove(tempInt); findNum = true;
-                                }
-                                else tempInt = rand.Next(10);
-                            }
-                        else
-                            while (!findNum)
-                            {
-                                if (row4.Contains(tempInt) && group6.Contains(tempInt))
-                                {
-                                    row4.Remove(tempInt); group6.Remove(tempInt); findNum = true;
-                                }
-                                else tempInt = rand.Next(10);
-                            }
-                    }
-                    else if (j == 4)
-                    {
-                        if (i <= 2)
-                            while (!findNum)
-                            {
-                                if (row5.Contains(tempInt) && group4.Contains(tempInt))
-                                {
-                                    row5.Remove(tempInt); group4.Remove(tempInt); findNum = true;
-                                }
-                                else tempInt = rand.Next(10);
-                            }
-                        else if (i < 6)
-                            while (!findNum)
-                            {
-                                if (row5.Contains(tempInt) && group5.Contains(tempInt))
-                                {
-                                    row5.Remove(tempInt); group5.Remove(tempInt); findNum = true;
-                                }
-                                else tempInt = rand.Next(10);
-                            }
-                        else
-                            while (!findNum)
-                            {
-                                if (row5.Contains(tempInt) && group6.Contains(tempInt))
-                                {
-                                    row5.Remove(tempInt); group6.Remove(tempInt); findNum = true;
-                                }
-                                else tempInt = rand.Next(10);
-                            }
-                    }
-                    else if (j == 5)
-                    {
-                        if (i <= 2)
-                            while (!findNum)
-                            {
-                                if (row6.Contains(tempInt) && group4.Contains(tempInt))
-                                {
-                                    row6.Remove(tempInt); group4.Remove(tempInt); findNum = true;
-                                }
-                                else tempInt = rand.Next(10);
-                            }
-                        else if (i < 6)
-                            while (!findNum)
-                            {
-                                if (row6.Contains(tempInt) && group5.Contains(tempInt))
-                                {
-                                    row6.Remove(tempInt); group5.Remove(tempInt); findNum = true;
-                                }
-                                else tempInt = rand.Next(10);
-                            }
-                        else
-                            while (!findNum)
-                            {
-                                if (row6.Contains(tempInt) && group6.Contains(tempInt))
-                                {
-                                    row6.Remove(tempInt); group6.Remove(tempInt); findNum = true;
-                                }
-                                else tempInt = rand.Next(10);
-                            }
-                    }
-                    else if (j == 6){
-                        if (i <= 2)
-                            while (!findNum)
-                            {
-                                if (row7.Contains(tempInt) && group7.Contains(tempInt)){
-                                    row7.Remove(tempInt); group7.Remove(tempInt); findNum = true;
-                                }
-                                else tempInt = rand.Next(10);
-                            }
-                        else if (i < 6)
-                            while (!findNum)
-                            {
-                                if (row7.Contains(tempInt) && group8.Contains(tempInt))
-                                {
-                                    row7.Remove(tempInt); group8.Remove(tempInt); findNum = true;
-                                }
-                                else tempInt = rand.Next(10);
-                            }
-                        else
-                            while (!findNum)
-                            {
-                                if (row7.Contains(tempInt) && group9.Contains(tempInt))
-                                {
-                                    row7.Remove(tempInt); group9.Remove(tempInt); findNum = true;
-                                }
-                                else tempInt = rand.Next(10);
-                            }
-                    }
-                    else if (j == 7){
-                        if (i <= 2)
-                            while (!findNum)
-                            {
-                                if (row8.Contains(tempInt) && group7.Contains(tempInt))
-                                {
-                                    row8.Remove(tempInt); group7.Remove(tempInt); findNum = true;
-                                }
-                                else tempInt = rand.Next(10);
-                            }
-                        else if (i < 6)
-                            while (!findNum)
-                            {
-                                if (row8.Contains(tempInt) && group8.Contains(tempInt))
-                                {
-                                    row8.Remove(tempInt); group8.Remove(tempInt); findNum = true;
-                                }
-                                else tempInt = rand.Next(10);
-                            }
-                        else
-                            while (!findNum)
-                            {
-                                if (row8.Contains(tempInt) && group9.Contains(tempInt))
-                                {
-                                    row8.Remove(tempInt); group9.Remove(tempInt); findNum = true;
-                                }
-                                else tempInt = rand.Next(10);
-                            }
-                    }
-                    else if (j == 8)
-                    {
-                        if (i <= 2)
-                            while (!findNum)
-                            {
-                                if (row9.Contains(tempInt) && group7.Contains(tempInt))
-                                {
-                                    row9.Remove(tempInt); group7.Remove(tempInt); findNum = true;
-                                }
-                                else tempInt = rand.Next(10);
-                            }
-                        else if (i < 6)
-                            while (!findNum)
-                            {
-                                if (row9.Contains(tempInt) && group8.Contains(tempInt))
-                                {
-                                    row9.Remove(tempInt); group8.Remove(tempInt); findNum = true;
-                                }
-                                else tempInt = rand.Next(10);
-                            }
-                        else
-                            while (!findNum)
-                            {
-                                if (row9.Contains(tempInt) && group9.Contains(tempInt))
-                                {
-                                    row9.Remove(tempInt); group9.Remove(tempInt); findNum = true;
-                                }
-                                else tempInt = rand.Next(10);
-                            }
-                    }
-                    board[i, j] = tempInt;
                 }
+            List<List<int>> list = new List<List<int>>();
+                
             base.Initialize();
         }
 
