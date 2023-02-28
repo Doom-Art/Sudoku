@@ -41,6 +41,15 @@ namespace Sudoku
             List<int> row7 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
             List<int> row8 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
             List<int> row9 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            List<int> collumn1 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            List<int> collumn2 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            List<int> collumn3 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            List<int> collumn4 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            List<int> collumn5 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            List<int> collumn6 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            List<int> collumn7 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            List<int> collumn8 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
+            List<int> collumn9 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
             List<int> group1 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
             List<int> group2 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
             List<int> group3 = new List<int> { 1, 2, 3, 4, 5, 6, 7, 8, 9 };
@@ -350,15 +359,15 @@ namespace Sudoku
                     tempI = 0;
                     tempJ = 0;
                     if (i > 5)
-                        tempI = 2;
+                        tempI += 2;
                     else if (i > 2)
-                        tempI =1;
+                        tempI +=1;
                     if (j > 5)
-                        tempJ = 2;
+                        tempJ += 2;
                     else if (j > 2)
-                        tempJ= 1;
+                        tempJ+= 1;
                     _spriteBatch.Draw(rectTex, new Rectangle((i * 70)+tempI, (j * 70)+tempJ, 69, 69), Color.White);
-                    _spriteBatch.DrawString(numFont, Convert.ToString(board[i, j]), new Vector2((70 * i)+tempI, (70 * j)+tempJ), Color.Black);
+                    _spriteBatch.DrawString(numFont, Convert.ToString(board[i, j]), new Vector2((70 * i)+tempI+2, (70 * j)+tempJ+2), Color.Black);
                 }
 
             _spriteBatch.End();
